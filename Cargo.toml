@@ -7,4 +7,13 @@ edition = "2021"
 
 [dependencies]
 anyhow = "1.0.75"
-nom = "7.1.3"
+toy_parser = { path = "toy_parser" }
+
+[workspace]
+resolver = "2"
+members = [
+    "toy_ast",
+    "toy_jit",
+    "toy_parser",
+    "toy_typecheck",
+]

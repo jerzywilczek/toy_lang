@@ -14,7 +14,21 @@ pub enum Statement {
 pub enum Expr {
     I32(i32),
     Identifier(String),
-    Multiply(Box<Expr>, Box<Expr>),
+    BinExpr(BinExpr),
+    UnExpr(UnExpr),
+}
+
+#[derive(Debug, PartialEq, Eq)]
+pub enum BinExpr {
+    Mul(Box<Expr>, Box<Expr>),
+    Div(Box<Expr>, Box<Expr>),
+    Add(Box<Expr>, Box<Expr>),
+    Sub(Box<Expr>, Box<Expr>),
+}
+
+#[derive(Debug, PartialEq, Eq)]
+pub enum UnExpr {
+    Neg(Box<Expr>),
 }
 
 #[derive(Debug, PartialEq, Eq)]
@@ -31,7 +45,13 @@ pub struct FnParam {
     pub ty: Type,
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Type {
     I32,
+
+    // TODO: no parser for this
+    Fn {
+        params: Vec<Type>,
+        return_ty: Box<Type>,
+    },
 }

@@ -1,3 +1,13 @@
 fn main() {
-    toy_lang::parser::parse(include_str!("../code_samples/simple_program.tl")).unwrap();
+    let src = r#"
+        module simple;
+
+        fn test(i: i32) {
+            return (-i + 1) * 2 + 3;
+        }
+    "#;
+
+    let result = toy_parser::parse(src).unwrap();
+
+    println!("{:#?}", result);
 }
