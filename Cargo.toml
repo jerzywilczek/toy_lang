@@ -12,8 +12,6 @@ toy_parser = { path = "toy_parser" }
 [workspace]
 resolver = "2"
 members = [
-    "toy_ast",
     "toy_jit",
     "toy_parser",
-    "toy_typecheck",
 ]

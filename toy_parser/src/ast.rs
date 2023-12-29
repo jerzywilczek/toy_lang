@@ -1,3 +1,5 @@
+use crate::typecheck::TypeId;
+
 #[derive(Debug, PartialEq, Eq)]
 pub struct Module {
     pub name: String,
@@ -35,23 +37,12 @@ pub enum UnExpr {
 pub struct FnDef {
     pub name: String,
     pub params: Vec<FnParam>,
-    pub return_ty: Type,
+    pub return_ty: TypeId,
     pub body: Vec<Statement>,
 }
 
 #[derive(Debug, PartialEq, Eq)]
 pub struct FnParam {
     pub name: String,
-    pub ty: Type,
-}
-
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub enum Type {
-    I32,
-
-    // TODO: no parser for this
-    Fn {
-        params: Vec<Type>,
-        return_ty: Box<Type>,
-    },
+    pub ty: TypeId,
 }
